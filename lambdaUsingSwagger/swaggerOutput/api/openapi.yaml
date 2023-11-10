@@ -1,0 +1,102 @@
+openapi: 3.0.3
+info:
+  description: FOO API USING LAMBDA
+  title: FOO API
+  version: 1.0.0
+servers:
+- url: http://127.0.0.1:8181
+paths:
+  /foo/greet:
+    post:
+      operationId: fooGreetPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Greet_Request_Schema'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greet_Response_Schema'
+          description: Successful Response
+      summary: Returns A Greeting
+      tags:
+      - Greet
+      x-eov-operation-handler: controllers/GreetController
+  /user/add:
+    post:
+      operationId: userAddPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User_Request_Schema'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_Response_Schema'
+          description: Successful Response
+      summary: Adds A User
+      tags:
+      - User
+      x-eov-operation-handler: controllers/UserController
+  /user/all:
+    post:
+      operationId: userAllPOST
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_Response_Schema_1'
+          description: Successful Response
+      summary: Returns All Users
+      tags:
+      - User
+      x-eov-operation-handler: controllers/UserController
+components:
+  schemas:
+    User_Response_Schema:
+      example:
+        users: "{}"
+      properties:
+        users:
+          type: object
+      title: User Response Schema
+      type: object
+    User_Response_Schema_1:
+      example:
+        users: users
+      properties:
+        users:
+          type: string
+      title: User Response Schema
+      type: object
+    Greet_Response_Schema:
+      example:
+        greetings: greetings
+      properties:
+        greetings:
+          type: string
+      title: Greet Response Schema
+      type: object
+    User_Request_Schema:
+      properties:
+        cName:
+          type: string
+        cEmail:
+          type: string
+        cPassword:
+          type: string
+      title: User Request Schema
+      type: object
+    Greet_Request_Schema:
+      properties:
+        name:
+          type: string
+      title: Greet Request Schema
+      type: object

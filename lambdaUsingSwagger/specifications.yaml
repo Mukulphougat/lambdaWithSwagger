@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: FOO API
+  description: FOO API USING LAMBDA
+  version: 1.0.0
+servers:
+  - url: 'http://127.0.0.1:8181'
+paths:
+  /foo/greet:
+    post:
+      summary: Returns A Greeting
+      tags:
+        - Greet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Greet Request Schema
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Greet Response Schema
+                type: object
+                properties:
+                  greetings:
+                    type: string
+  /user/add:
+    post:
+      summary: Adds A User
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: User Request Schema
+              type: object
+              properties:
+                cName:
+                  type: string
+                cEmail:
+                  type: string
+                cPassword:
+                  type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: User Response Schema
+                type: object
+                properties:
+                  users:
+                    type: object
+  /user/all:
+    post:
+      summary: Returns All Users
+      tags:
+        - User
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: User Response Schema
+                type: object
+                properties:
+                  users:
+                    type: string
